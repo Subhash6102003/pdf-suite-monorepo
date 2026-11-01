@@ -21,20 +21,20 @@
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            bg: '#141413',
-            surface: '#1C1C1A',
-            surfaceCard: '#22221F',
-            surfaceHover: '#292925',
-            border: '#2C2C28',
-            borderSubtle: '#242421',
-            accent: '#D49B55',
-            accentHover: '#C48C46',
-            accentMuted: '#AF7B3B',
-            warmStone: '#8A847C',
-            warmSand: '#D6CEBE',
-            textPrimary: '#FAF9F5',
-            textMuted: '#94918B',
-            textDim: '#6E6B65'
+            bg: '#FBF9F5',
+            surface: '#FFFFFF',
+            surfaceCard: '#F7F5F0',
+            surfaceHover: '#F2EFE8',
+            border: '#E8E4DC',
+            borderSubtle: '#F0ECE4',
+            accent: '#B85526',
+            accentHover: '#A1471C',
+            accentMuted: '#8D3B14',
+            warmStone: '#706C64',
+            warmSand: '#8A6D45',
+            textPrimary: '#181716',
+            textMuted: '#66635C',
+            textDim: '#99948A'
           }
         }
       }
@@ -43,22 +43,23 @@
 
   <style>
     body {
-      background-color: #141413;
-      color: #FAF9F5;
+      background-color: #FBF9F5;
+      color: #181716;
       font-family: 'Plus Jakarta Sans', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     ::selection {
-      background: rgba(212, 155, 85, 0.25);
-      color: #FAF9F5;
+      background: rgba(184, 85, 38, 0.15);
+      color: #181716;
     }
     .panel {
-      background-color: #1C1C1A;
-      border: 1px solid #2C2C28;
+      background-color: #FFFFFF;
+      border: 1px solid #E8E4DC;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
     }
     .panel-hover:hover {
-      background-color: #21211E;
-      border-color: #383832;
+      background-color: #FAF8F4;
+      border-color: #D8D2C6;
       transition: background-color 160ms ease, border-color 160ms ease;
     }
   </style>
@@ -66,7 +67,7 @@
 <body class="min-h-screen flex flex-col justify-between">
 
   <!-- MINIMAL PROMO BANNER -->
-  <div class="border-b border-border/80 bg-surface/50 px-6 py-2.5 text-center text-xs font-mono text-textMuted flex items-center justify-center gap-3">
+  <div class="border-b border-border bg-surfaceCard/60 px-6 py-2.5 text-center text-xs font-mono text-textMuted flex items-center justify-center gap-3">
     <span class="text-[11px] uppercase tracking-wider text-accent font-semibold px-2 py-0.5 rounded bg-surface border border-border">
       Monorepo v1.0
     </span>
@@ -78,7 +79,7 @@
   </div>
 
   <!-- NAVIGATION HEADER -->
-  <header class="border-b border-border bg-bg/95 sticky top-0 z-40 px-6 sm:px-12 py-3.5 flex items-center justify-between">
+  <header class="border-b border-border bg-bg/95 backdrop-blur sticky top-0 z-40 px-6 sm:px-12 py-3.5 flex items-center justify-between">
     <div class="flex items-center gap-3">
       <a href="#overview" class="text-base font-semibold tracking-tight text-textPrimary hover:text-accent transition-colors">
         PDF Suite
@@ -95,7 +96,7 @@
       <a href="#architecture" class="hover:text-textPrimary transition-colors">Architecture</a>
       <a href="#engines" class="hover:text-textPrimary transition-colors">Worker Engines</a>
       <a href="#quickstart" class="hover:text-textPrimary transition-colors">Quickstart</a>
-      <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="hover:text-accent transition-colors font-mono text-[11px] flex items-center gap-1">
+      <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="hover:text-accent transition-colors font-mono text-[11px] flex items-center gap-1 font-semibold">
         GitHub ↗
       </a>
       <a href="https://www.linkedin.com/in/subhash-maurya-656905243/" target="_blank" rel="noreferrer" class="hover:text-textPrimary transition-colors font-mono text-[11px] flex items-center gap-1">
@@ -104,7 +105,7 @@
     </nav>
 
     <!-- Header Action Button -->
-    <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-3.5 py-1.5 bg-accent hover:bg-accentHover text-textPrimary font-medium text-xs rounded transition-colors flex items-center gap-1.5">
+    <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-3.5 py-1.5 bg-accent hover:bg-accentHover text-white font-medium text-xs rounded transition-colors flex items-center gap-1.5">
       <span>Star on GitHub</span>
     </a>
   </header>
@@ -139,7 +140,7 @@
 
       <!-- Action Buttons -->
       <div class="flex flex-wrap items-center gap-3 pt-3">
-        <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-5 py-2.5 bg-accent hover:bg-accentHover text-textPrimary font-medium text-xs rounded transition-colors flex items-center gap-2">
+        <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-5 py-2.5 bg-accent hover:bg-accentHover text-white font-medium text-xs rounded transition-colors flex items-center gap-2">
           <span>View Source Code on GitHub</span>
           <span>→</span>
         </a>
@@ -170,7 +171,7 @@
           <div class="space-y-3">
             <div class="flex items-center justify-between">
               <span class="text-xs font-mono text-accent font-medium">WEB CLIENT</span>
-              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded">Client WASM</span>
+              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded bg-surfaceCard">Client WASM</span>
             </div>
             <h3 class="text-base font-semibold text-textPrimary">Next.js 15 Web Workspace</h3>
             <p class="text-xs text-textMuted leading-relaxed font-normal">
@@ -188,7 +189,7 @@
           <div class="space-y-3">
             <div class="flex items-center justify-between">
               <span class="text-xs font-mono text-warmStone font-medium">MOBILE APP</span>
-              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded">iOS & Android</span>
+              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded bg-surfaceCard">iOS & Android</span>
             </div>
             <h3 class="text-base font-semibold text-textPrimary">Flutter Cross-Platform Client</h3>
             <p class="text-xs text-textMuted leading-relaxed font-normal">
@@ -206,7 +207,7 @@
           <div class="space-y-3">
             <div class="flex items-center justify-between">
               <span class="text-xs font-mono text-accent font-medium">WORKER POOL</span>
-              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded">BullMQ + Redis</span>
+              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded bg-surfaceCard">BullMQ + Redis</span>
             </div>
             <h3 class="text-base font-semibold text-textPrimary">Polyglot Processing Bus</h3>
             <p class="text-xs text-textMuted leading-relaxed font-normal">
@@ -284,25 +285,25 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono">
-        <div class="p-4 bg-bg rounded border border-border">
+        <div class="p-4 bg-surfaceCard rounded border border-border">
           <div class="text-accent font-semibold mb-1">QPDF Processor</div>
           <div class="text-textPrimary font-sans font-medium text-xs mb-1">Split & Merge Engine</div>
           <p class="text-textMuted text-[11px] font-sans">Lossless page-level stream parsing producing linearized, fast-web PDF output.</p>
         </div>
 
-        <div class="p-4 bg-bg rounded border border-border">
-          <div class="text-warmSand font-semibold mb-1">Sharp Engine</div>
+        <div class="p-4 bg-surfaceCard rounded border border-border">
+          <div class="text-warmStone font-semibold mb-1">Sharp Engine</div>
           <div class="text-textPrimary font-sans font-medium text-xs mb-1">JPG to PDF Pipeline</div>
           <p class="text-textMuted text-[11px] font-sans">High-speed libvips native compilation preserving input image dimensions and DPI.</p>
         </div>
 
-        <div class="p-4 bg-bg rounded border border-border">
+        <div class="p-4 bg-surfaceCard rounded border border-border">
           <div class="text-accent font-semibold mb-1">Python Worker</div>
           <div class="text-textPrimary font-sans font-medium text-xs mb-1">PDF to Word Conversion</div>
           <p class="text-textMuted text-[11px] font-sans">Headless LibreOffice service converting documents to reflowable DOCX files.</p>
         </div>
 
-        <div class="p-4 bg-bg rounded border border-border">
+        <div class="p-4 bg-surfaceCard rounded border border-border">
           <div class="text-warmStone font-semibold mb-1">TTL Cleaner</div>
           <div class="text-textPrimary font-sans font-medium text-xs mb-1">Automated Purge Daemon</div>
           <p class="text-textMuted text-[11px] font-sans">Scheduled cron purging expired blobs from S3/MinIO after 24 hours.</p>
@@ -310,25 +311,25 @@
       </div>
     </section>
 
-    <!-- LOCAL QUICKSTART -->
+    <!-- LOCAL QUICKSTART (INSET CONTRAST TERMINAL) -->
     <section id="quickstart" class="panel rounded-lg p-6 sm:p-8 flex flex-col gap-5">
       <div class="flex flex-col gap-1">
         <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">04 • Getting Started</span>
         <h3 class="text-lg font-semibold text-textPrimary">Run Locally in Under 3 Minutes</h3>
       </div>
 
-      <div class="bg-bg rounded border border-border p-4 font-mono text-xs text-textPrimary overflow-x-auto space-y-3">
+      <div class="bg-[#181817] rounded-lg border border-[#2D2D29] p-4 font-mono text-xs text-[#FAF9F5] overflow-x-auto space-y-3">
         <div>
-          <span class="text-textDim"># 1. Clone repository and install dependencies</span>
-          <div class="text-accent mt-0.5"><span class="text-textDim">$</span> git clone https://github.com/Subhash6102003/pdf-suite-monorepo.git && cd pdf-suite-monorepo && pnpm install</div>
+          <span class="text-[#8E8B83]"># 1. Clone repository and install dependencies</span>
+          <div class="text-[#D4A359] mt-0.5"><span class="text-[#8E8B83]">$</span> git clone https://github.com/Subhash6102003/pdf-suite-monorepo.git && cd pdf-suite-monorepo && pnpm install</div>
         </div>
         <div>
-          <span class="text-textDim"># 2. Start PostgreSQL, Redis & MinIO services via Docker Compose</span>
-          <div class="text-accent mt-0.5"><span class="text-textDim">$</span> docker compose -f services/workers/docker/docker-compose.dev.yml up -d</div>
+          <span class="text-[#8E8B83]"># 2. Start PostgreSQL, Redis & MinIO services via Docker Compose</span>
+          <div class="text-[#D4A359] mt-0.5"><span class="text-[#8E8B83]">$</span> docker compose -f services/workers/docker/docker-compose.dev.yml up -d</div>
         </div>
         <div>
-          <span class="text-textDim"># 3. Push database schema and start development cluster</span>
-          <div class="text-warmSand mt-0.5"><span class="text-textDim">$</span> pnpm --filter infra db:push && pnpm dev</div>
+          <span class="text-[#8E8B83]"># 3. Push database schema and start development cluster</span>
+          <div class="text-[#E2DDD5] mt-0.5"><span class="text-[#8E8B83]">$</span> pnpm --filter infra db:push && pnpm dev</div>
         </div>
       </div>
     </section>
@@ -344,7 +345,7 @@
       </div>
 
       <div class="flex items-center gap-3 shrink-0">
-        <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-4 py-2 bg-accent hover:bg-accentHover text-textPrimary text-xs font-medium rounded transition-colors flex items-center gap-1.5">
+        <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-4 py-2 bg-accent hover:bg-accentHover text-white text-xs font-medium rounded transition-colors flex items-center gap-1.5">
           <span>GitHub Repo</span>
           <span>↗</span>
         </a>
@@ -365,7 +366,7 @@
     <div class="flex items-center gap-5 font-mono text-[11px]">
       <a href="#overview" class="hover:text-textPrimary transition-colors">Overview</a>
       <a href="#architecture" class="hover:text-textPrimary transition-colors">Architecture</a>
-      <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="hover:text-accent transition-colors">GitHub</a>
+      <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="hover:text-accent transition-colors font-semibold">GitHub</a>
       <a href="https://www.linkedin.com/in/subhash-maurya-656905243/" target="_blank" rel="noreferrer" class="hover:text-textPrimary transition-colors">LinkedIn</a>
     </div>
   </footer>
