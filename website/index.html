@@ -9,7 +9,7 @@
   <!-- Typography: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -21,19 +21,20 @@
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            bg: '#0A0E17',
-            surface: '#111827',
-            surfaceHover: '#1B2436',
-            surfaceCard: '#131D31',
-            border: '#1F2E47',
-            borderGlow: '#2563EB',
-            accent: '#EF4444',
-            accentGlow: '#F87171',
-            accentCyan: '#06B6D4',
-            accentEmerald: '#10B981',
-            accentIndigo: '#6366F1',
-            textPrimary: '#F8FAFC',
-            textMuted: '#94A3B8'
+            bg: '#141413',
+            surface: '#1C1C1A',
+            surfaceCard: '#22221F',
+            surfaceHover: '#292925',
+            border: '#2C2C28',
+            borderSubtle: '#242421',
+            accent: '#C45749',
+            accentHover: '#B24B3E',
+            accentMuted: '#9E4437',
+            warmStone: '#8A847C',
+            warmSand: '#D6CEBE',
+            textPrimary: '#FAF9F5',
+            textMuted: '#94918B',
+            textDim: '#6E6B65'
           }
         }
       }
@@ -42,391 +43,312 @@
 
   <style>
     body {
-      background-color: #0A0E17;
-      color: #F8FAFC;
+      background-color: #141413;
+      color: #FAF9F5;
       font-family: 'Plus Jakarta Sans', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     ::selection {
-      background: rgba(239, 68, 68, 0.3);
-      color: #F87171;
+      background: rgba(196, 87, 73, 0.25);
+      color: #FAF9F5;
     }
     .panel {
-      background: linear-gradient(180deg, #131D31 0%, #0F172A 100%);
-      border: 1px solid #1F2E47;
+      background-color: #1C1C1A;
+      border: 1px solid #2C2C28;
     }
-    .panel:hover {
-      border-color: #2D436B;
-      transition: all 200ms ease;
-    }
-    .panel-accent {
-      background: radial-gradient(circle at top right, rgba(239, 68, 68, 0.08), transparent 70%), #111827;
-      border: 1px solid #2B3B59;
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #F8FAFC 0%, #CBD5E1 50%, #EF4444 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .glow-dot {
-      box-shadow: 0 0 12px #EF4444;
+    .panel-hover:hover {
+      background-color: #21211E;
+      border-color: #383832;
+      transition: background-color 160ms ease, border-color 160ms ease;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-accent/20">
+<body class="min-h-screen flex flex-col justify-between">
 
-  <!-- TOP PROMO BANNER -->
-  <div class="bg-gradient-to-r from-accent/20 via-accentIndigo/20 to-accentCyan/20 border-b border-border/80 px-4 py-2 text-center text-xs font-mono text-textMuted flex items-center justify-center gap-3">
-    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent/20 text-accent font-semibold text-[11px]">
-      <span class="w-1.5 h-1.5 rounded-full bg-accent animate-ping"></span>
-      OPEN SOURCE
+  <!-- MINIMAL PROMO BANNER -->
+  <div class="border-b border-border/80 bg-surface/50 px-6 py-2.5 text-center text-xs font-mono text-textMuted flex items-center justify-center gap-3">
+    <span class="text-[11px] uppercase tracking-wider text-accent font-semibold px-2 py-0.5 rounded bg-surface border border-border">
+      Monorepo v1.0
     </span>
-    <span>Turborepo • Next.js 15 • Flutter Native • BullMQ Distributed Workers</span>
-    <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="text-textPrimary hover:text-accent font-semibold underline underline-offset-2 transition-colors ml-1">
-      Star on GitHub ⭐
+    <span>Turborepo • Next.js 15 • Flutter Native • Fastify • BullMQ • Prisma</span>
+    <span class="text-textDim hidden sm:inline">•</span>
+    <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="text-textPrimary hover:text-accent font-medium underline underline-offset-4 transition-colors hidden sm:inline">
+      View on GitHub ↗
     </a>
   </div>
 
   <!-- NAVIGATION HEADER -->
-  <header class="border-b border-border bg-bg/95 backdrop-blur sticky top-0 z-40 px-6 sm:px-12 py-4 flex items-center justify-between">
+  <header class="border-b border-border bg-bg/95 sticky top-0 z-40 px-6 sm:px-12 py-3.5 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accentIndigo flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-accent/20">
-        PS
-      </div>
-      <div>
-        <a href="#overview" class="text-base font-bold tracking-tight text-textPrimary hover:text-accent transition-colors flex items-center gap-2">
-          PDF Suite
-        </a>
-      </div>
-      <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-surface border border-border text-accentCyan">
-        Distributed Monorepo
+      <a href="#overview" class="text-base font-semibold tracking-tight text-textPrimary hover:text-accent transition-colors">
+        PDF Suite
+      </a>
+      <span class="text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-surface border border-border text-textMuted">
+        Distributed System
       </span>
     </div>
 
     <!-- Nav Items -->
     <nav class="hidden md:flex items-center gap-7 text-xs text-textMuted font-medium">
+      <a href="#overview" class="hover:text-textPrimary transition-colors">Overview</a>
+      <a href="#media-showcase" class="hover:text-textPrimary transition-colors">Media Showcase</a>
       <a href="#architecture" class="hover:text-textPrimary transition-colors">Architecture</a>
-      <a href="#media-showcase" class="hover:text-textPrimary transition-colors">Media & Preview</a>
       <a href="#engines" class="hover:text-textPrimary transition-colors">Worker Engines</a>
-      <a href="#tools" class="hover:text-textPrimary transition-colors">Tool Suite</a>
       <a href="#quickstart" class="hover:text-textPrimary transition-colors">Quickstart</a>
-      <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="text-accent hover:text-accentGlow font-mono text-xs flex items-center gap-1 font-semibold">
+      <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="hover:text-accent transition-colors font-mono text-[11px] flex items-center gap-1">
         GitHub ↗
       </a>
-      <a href="https://www.linkedin.com/in/subhash-maurya-656905243/" target="_blank" rel="noreferrer" class="hover:text-textPrimary font-mono text-xs flex items-center gap-1">
+      <a href="https://www.linkedin.com/in/subhash-maurya-656905243/" target="_blank" rel="noreferrer" class="hover:text-textPrimary transition-colors font-mono text-[11px] flex items-center gap-1">
         LinkedIn ↗
       </a>
     </nav>
 
     <!-- Header Action Button -->
-    <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-4 py-2 bg-gradient-to-r from-accent to-rose-600 hover:opacity-95 text-white font-semibold text-xs rounded-lg transition-all shadow-md shadow-accent/25 flex items-center gap-2">
-      <svg class="w-4 h-4 fill-current" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      <span>View Repo</span>
+    <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-3.5 py-1.5 bg-accent hover:bg-accentHover text-textPrimary font-medium text-xs rounded transition-colors flex items-center gap-1.5">
+      <span>Star on GitHub</span>
     </a>
   </header>
 
   <!-- MAIN BODY -->
-  <main class="flex-1 max-w-6xl mx-auto w-full px-6 sm:px-12 py-14 flex flex-col gap-24">
+  <main class="flex-1 max-w-5xl mx-auto w-full px-6 sm:px-12 py-14 flex flex-col gap-20">
 
     <!-- HERO SECTION -->
-    <section id="overview" class="flex flex-col gap-6 max-w-3xl pt-4">
-      <div class="inline-flex items-center gap-2.5 text-xs font-mono text-accent">
-        <span class="w-2 h-2 rounded-full bg-accent glow-dot"></span>
-        <span class="tracking-widest uppercase font-semibold">High-Concurrency Cloud Architecture</span>
+    <section id="overview" class="flex flex-col gap-5 max-w-3xl pt-2">
+      <div class="inline-flex items-center gap-2 text-xs font-mono text-accent">
+        <span>●</span>
+        <span class="uppercase tracking-wider">Document Processing Infrastructure</span>
       </div>
 
-      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.1] gradient-text">
-        The distributed engine for document infrastructure.
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight text-textPrimary leading-tight">
+        A distributed engine for enterprise document processing.
       </h1>
 
-      <p class="text-base sm:text-lg text-textMuted leading-relaxed font-normal">
-        A full-stack, enterprise-grade SaaS monorepo orchestrating client-side WebAssembly, high-throughput Fastify REST APIs, BullMQ/Redis worker pipelines, and native Flutter mobile applications (iOS/Android) with strict zero-loss data retention.
+      <p class="text-sm sm:text-base text-textMuted leading-relaxed max-w-2xl font-normal">
+        PDF Suite is an end-to-end distributed SaaS monorepo. It features instant client-side WebAssembly for small files, a high-throughput Fastify REST gateway, asynchronous BullMQ/Redis worker pipelines, and a native Flutter mobile application with complete feature parity.
       </p>
 
-      <!-- Badges Stack -->
+      <!-- Technical Stack Pills -->
       <div class="flex flex-wrap items-center gap-2 pt-2">
-        <span class="px-3 py-1 rounded-md bg-surface border border-border text-xs font-mono text-textPrimary">Next.js 15 (React 19)</span>
-        <span class="px-3 py-1 rounded-md bg-surface border border-border text-xs font-mono text-accentCyan">Flutter (iOS & Android)</span>
-        <span class="px-3 py-1 rounded-md bg-surface border border-border text-xs font-mono text-accentEmerald">Fastify 5.x API</span>
-        <span class="px-3 py-1 rounded-md bg-surface border border-border text-xs font-mono text-accent">BullMQ + Redis</span>
-        <span class="px-3 py-1 rounded-md bg-surface border border-border text-xs font-mono text-accentIndigo">Prisma PostgreSQL</span>
-        <span class="px-3 py-1 rounded-md bg-surface border border-border text-xs font-mono text-textMuted">Docker Compose</span>
+        <span class="px-2.5 py-1 rounded bg-surface border border-border text-[11px] font-mono text-textPrimary">Next.js 15 (React 19)</span>
+        <span class="px-2.5 py-1 rounded bg-surface border border-border text-[11px] font-mono text-textPrimary">Flutter Mobile (iOS/Android)</span>
+        <span class="px-2.5 py-1 rounded bg-surface border border-border text-[11px] font-mono text-textPrimary">Fastify 5.x API</span>
+        <span class="px-2.5 py-1 rounded bg-surface border border-border text-[11px] font-mono text-textPrimary">BullMQ + Redis</span>
+        <span class="px-2.5 py-1 rounded bg-surface border border-border text-[11px] font-mono text-textPrimary">Prisma + PostgreSQL</span>
+        <span class="px-2.5 py-1 rounded bg-surface border border-border text-[11px] font-mono text-textMuted">Docker Compose</span>
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex flex-wrap items-center gap-4 pt-4">
-        <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-6 py-3 bg-accent hover:bg-rose-600 text-white font-semibold text-sm rounded-lg transition-colors flex items-center gap-2.5 shadow-lg shadow-accent/20">
-          <span>Explore Source Code on GitHub</span>
+      <div class="flex flex-wrap items-center gap-3 pt-3">
+        <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-5 py-2.5 bg-accent hover:bg-accentHover text-textPrimary font-medium text-xs rounded transition-colors flex items-center gap-2">
+          <span>View Source Code on GitHub</span>
           <span>→</span>
         </a>
 
-        <a href="#media-showcase" class="px-6 py-3 panel text-textPrimary hover:bg-surfaceHover font-semibold text-sm rounded-lg transition-colors flex items-center gap-2">
-          <span>Media & Architecture Showcase</span>
+        <a href="#architecture" class="px-5 py-2.5 panel panel-hover text-textPrimary font-medium text-xs rounded transition-colors flex items-center gap-2">
+          <span>System Architecture</span>
         </a>
       </div>
     </section>
 
-    <!-- MEDIA & PREVIEW SHOWCASE (PLACEHOLDER FOR USER MEDIA) -->
+    <!-- MEDIA SHOWCASE SECTION (FOR LINKEDIN SCREENSHOTS & PRESENTATION) -->
     <section id="media-showcase" class="flex flex-col gap-6">
-      <div class="flex flex-col gap-1.5">
-        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">01 • System Media & Visuals</span>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-textPrimary">
-          Interactive Platform Showcase
+      <div class="flex flex-col gap-1">
+        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">01 • Platform Preview</span>
+        <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-textPrimary">
+          Media & Application Showcase
         </h2>
-        <p class="text-xs sm:text-sm text-textMuted">
-          Designed for high visual impact — showcasing Web Studio, Flutter Native App, and Background Processing.
+        <p class="text-xs text-textMuted leading-relaxed max-w-xl">
+          Engineered as a cohesive multi-platform ecosystem with web, native mobile, and background processing.
         </p>
       </div>
 
-      <!-- Media Visual Mockups Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <!-- Media Card 1: Web App Dashboard -->
-        <div class="panel rounded-xl overflow-hidden border border-border flex flex-col group">
-          <div class="bg-surface px-4 py-3 border-b border-border flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-              <span class="ml-2 text-xs font-mono text-textMuted">Next.js 15 Web Portal</span>
+      <!-- 3 Structured Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <!-- Card 1: Web Application -->
+        <div class="panel panel-hover p-6 rounded-lg flex flex-col justify-between gap-6 block">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-accent font-medium">WEB CLIENT</span>
+              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded">Client WASM</span>
             </div>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-accent/10 text-accent font-semibold">Client WASM</span>
+            <h3 class="text-base font-semibold text-textPrimary">Next.js 15 Web Workspace</h3>
+            <p class="text-xs text-textMuted leading-relaxed font-normal">
+              Modern App Router workspace with responsive drag-and-drop dropzones, real-time stage progress indicators, and client-side WASM compilation for zero-latency operations.
+            </p>
           </div>
-          <div class="p-6 bg-gradient-to-b from-surfaceCard to-bg flex-1 flex flex-col justify-between gap-6 min-h-[220px]">
-            <div class="space-y-3">
-              <div class="inline-block px-2.5 py-1 rounded bg-accent/20 text-accent text-xs font-bold font-mono">
-                DESKTOP WEB
-              </div>
-              <h3 class="text-lg font-bold text-textPrimary">Modern Next.js 15 Workspace</h3>
-              <p class="text-xs text-textMuted leading-relaxed">
-                App Router with responsive dropzones, stage progress bars, batch upload management, and client-side WASM compilation for files under 15MB.
-              </p>
-            </div>
-            <div class="p-3 rounded-lg bg-bg border border-border/80 text-[11px] font-mono text-accentEmerald flex items-center justify-between">
-              <span>● Client WASM Compression</span>
-              <span>0ms Latency</span>
-            </div>
+          <div class="pt-3 border-t border-border flex items-center justify-between text-[11px] font-mono text-textMuted">
+            <span>Client Compute</span>
+            <span class="text-textPrimary font-medium">0ms Server Latency</span>
           </div>
         </div>
 
-        <!-- Media Card 2: Flutter Mobile App -->
-        <div class="panel rounded-xl overflow-hidden border border-border flex flex-col group">
-          <div class="bg-surface px-4 py-3 border-b border-border flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <svg class="w-3.5 h-3.5 text-accentCyan fill-current" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zM6.027 15.688L2.327 19.388 6.94 24l3.7-3.7-4.613-4.612zM8.33 13.385l4.613 4.613 8.74-8.74h-7.37l-5.983 4.127z"/></svg>
-              <span class="text-xs font-mono text-textMuted">Flutter iOS / Android</span>
+        <!-- Card 2: Native Mobile -->
+        <div class="panel panel-hover p-6 rounded-lg flex flex-col justify-between gap-6 block">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-warmStone font-medium">MOBILE APP</span>
+              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded">iOS & Android</span>
             </div>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-accentCyan/10 text-accentCyan font-semibold">Fastlane Ready</span>
+            <h3 class="text-base font-semibold text-textPrimary">Flutter Cross-Platform Client</h3>
+            <p class="text-xs text-textMuted leading-relaxed font-normal">
+              Engineered with Riverpod, GoRouter, local SQLite queue database for offline tolerance, biometric secure storage, and automated Fastlane CI/CD deployment pipelines.
+            </p>
           </div>
-          <div class="p-6 bg-gradient-to-b from-surfaceCard to-bg flex-1 flex flex-col justify-between gap-6 min-h-[220px]">
-            <div class="space-y-3">
-              <div class="inline-block px-2.5 py-1 rounded bg-accentCyan/20 text-accentCyan text-xs font-bold font-mono">
-                CROSS-PLATFORM
-              </div>
-              <h3 class="text-lg font-bold text-textPrimary">Native Flutter Mobile Client</h3>
-              <p class="text-xs text-textMuted leading-relaxed">
-                Engineered with Riverpod, GoRouter, local SQLite job queue persistence, biometric secure storage, and automated Fastlane CI/CD deployment configurations.
-              </p>
-            </div>
-            <div class="p-3 rounded-lg bg-bg border border-border/80 text-[11px] font-mono text-accentCyan flex items-center justify-between">
-              <span>● Offline Queue SQLite</span>
-              <span>100% Reliable</span>
-            </div>
+          <div class="pt-3 border-t border-border flex items-center justify-between text-[11px] font-mono text-textMuted">
+            <span>Architecture</span>
+            <span class="text-textPrimary font-medium">Clean MVVM + Riverpod</span>
           </div>
         </div>
 
-        <!-- Media Card 3: Distributed Worker Bus -->
-        <div class="panel rounded-xl overflow-hidden border border-border flex flex-col group">
-          <div class="bg-surface px-4 py-3 border-b border-border flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></span>
-              <span class="text-xs font-mono text-textMuted">BullMQ Worker Pool</span>
+        <!-- Card 3: Worker Bus -->
+        <div class="panel panel-hover p-6 rounded-lg flex flex-col justify-between gap-6 block">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-accent font-medium">WORKER POOL</span>
+              <span class="text-[10px] font-mono text-textDim border border-border px-1.5 py-0.5 rounded">BullMQ + Redis</span>
             </div>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-accentEmerald/10 text-accentEmerald font-semibold">Redis Bus</span>
+            <h3 class="text-base font-semibold text-textPrimary">Polyglot Processing Bus</h3>
+            <p class="text-xs text-textMuted leading-relaxed font-normal">
+              Distributed asynchronous workers consuming jobs from Redis, executing containerized QPDF engines, Sharp image processors, and Python LibreOffice document bindings.
+            </p>
           </div>
-          <div class="p-6 bg-gradient-to-b from-surfaceCard to-bg flex-1 flex flex-col justify-between gap-6 min-h-[220px]">
-            <div class="space-y-3">
-              <div class="inline-block px-2.5 py-1 rounded bg-accentEmerald/20 text-accentEmerald text-xs font-bold font-mono">
-                BACKEND QUEUE
-              </div>
-              <h3 class="text-lg font-bold text-textPrimary">Polyglot Worker Pipelines</h3>
-              <p class="text-xs text-textMuted leading-relaxed">
-                Distributed BullMQ workers consuming jobs from Redis, executing containerized QPDF lossless engines, Sharp image processors, and Python LibreOffice bindings.
-              </p>
-            </div>
-            <div class="p-3 rounded-lg bg-bg border border-border/80 text-[11px] font-mono text-accent flex items-center justify-between">
-              <span>● Dead-Letter Queue & Purge</span>
-              <span>24h Retention</span>
-            </div>
+          <div class="pt-3 border-t border-border flex items-center justify-between text-[11px] font-mono text-textMuted">
+            <span>Job Retention</span>
+            <span class="text-textPrimary font-medium">24h Automated Purge</span>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- CORE ARCHITECTURAL PILLARS -->
-    <section id="architecture" class="flex flex-col gap-8">
-      <div class="flex flex-col gap-1.5">
-        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">02 • System Topology</span>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-textPrimary">
-          Engineered for Fault Tolerance & Scale
+    <!-- CORE ARCHITECTURE PILLARS -->
+    <section id="architecture" class="flex flex-col gap-6">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">02 • System Architecture</span>
+        <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-textPrimary">
+          Three Architectural Foundations
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         
-        <!-- Pillar 1 -->
-        <div class="panel p-6 rounded-xl flex flex-col justify-between gap-4">
-          <div class="space-y-3">
-            <span class="text-xs font-mono text-accent block font-semibold">ARCH • 01</span>
-            <h3 class="text-base font-bold text-textPrimary">Dual-Execution Strategy</h3>
+        <div class="panel p-5 rounded-lg flex flex-col justify-between gap-4">
+          <div class="space-y-2">
+            <span class="text-xs font-mono text-accent block font-medium">01 • Hybrid Strategy</span>
+            <h3 class="text-sm font-semibold text-textPrimary">WASM + Cloud Workers</h3>
             <p class="text-xs text-textMuted leading-relaxed">
-              Files under 15MB process directly in the client's browser using WebAssembly and pdf-lib. Large enterprise files automatically stream to the Fastify gateway via signed URLs.
+              Files under 15MB are processed directly in the client browser using WebAssembly. Heavier multi-document operations seamlessly dispatch to background cloud workers.
             </p>
           </div>
-          <div class="pt-3 border-t border-border flex items-center justify-between text-[11px] font-mono text-textMuted">
-            <span>Latency Target</span>
-            <span class="text-accentEmerald font-bold">&lt; 15ms Client</span>
+          <div class="pt-2 text-[11px] font-mono text-textDim">
+            Zero Server Cost on 70%+ of Jobs
           </div>
         </div>
 
-        <!-- Pillar 2 -->
-        <div class="panel p-6 rounded-xl flex flex-col justify-between gap-4">
-          <div class="space-y-3">
-            <span class="text-xs font-mono text-accentCyan block font-semibold">ARCH • 02</span>
-            <h3 class="text-base font-bold text-textPrimary">Asynchronous BullMQ Pipeline</h3>
+        <div class="panel p-5 rounded-lg flex flex-col justify-between gap-4">
+          <div class="space-y-2">
+            <span class="text-xs font-mono text-warmStone block font-medium">02 • Asynchronous Pipeline</span>
+            <h3 class="text-sm font-semibold text-textPrimary">BullMQ & Dead-Letter Queues</h3>
             <p class="text-xs text-textMuted leading-relaxed">
-              Heavy operations are queued into Redis, processed by isolated worker nodes with exponential retry backoff, and automatically cleaned up via a 24-hour TTL cron daemon.
+              Jobs are produced into Redis queues with exponential backoff retries, dead-letter quarantine, and an automated 24-hour TTL purge daemon for zero persistent data retention.
             </p>
           </div>
-          <div class="pt-3 border-t border-border flex items-center justify-between text-[11px] font-mono text-textMuted">
-            <span>Job Reliability</span>
-            <span class="text-accentCyan font-bold">100% DLQ Recovery</span>
+          <div class="pt-2 text-[11px] font-mono text-textDim">
+            Fault-Tolerant Job Bus
           </div>
         </div>
 
-        <!-- Pillar 3 -->
-        <div class="panel p-6 rounded-xl flex flex-col justify-between gap-4">
-          <div class="space-y-3">
-            <span class="text-xs font-mono text-accentEmerald block font-semibold">ARCH • 03</span>
-            <h3 class="text-base font-bold text-textPrimary">Turborepo Orchestration</h3>
+        <div class="panel p-5 rounded-lg flex flex-col justify-between gap-4">
+          <div class="space-y-2">
+            <span class="text-xs font-mono text-accent block font-medium">03 • Monorepo Boundaries</span>
+            <h3 class="text-sm font-semibold text-textPrimary">Turborepo Orchestration</h3>
             <p class="text-xs text-textMuted leading-relaxed">
-              Unified monorepo boundaries linking web, mobile, API, workers, and shared core packages with cached build pipelines and shared canonical TypeScript contracts.
+              Unified workspace boundaries with shared canonical TypeScript contracts (@pdf-suite/shared-types), shared core logic, and parallelized Docker container builds.
             </p>
           </div>
-          <div class="pt-3 border-t border-border flex items-center justify-between text-[11px] font-mono text-textMuted">
-            <span>Package Manager</span>
-            <span class="text-accentIndigo font-bold">pnpm + Turborepo</span>
+          <div class="pt-2 text-[11px] font-mono text-textDim">
+            Optimized Caching & Type Safety
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- WORKER ENGINES & PROCESSING SPECS -->
-    <section id="engines" class="panel panel-accent p-8 rounded-2xl flex flex-col gap-6">
-      <div class="flex flex-col gap-1.5">
-        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">03 • Specialized Processing</span>
-        <h2 class="text-2xl font-bold tracking-tight text-textPrimary">Headless Microservice Engines</h2>
-        <p class="text-xs text-textMuted">Each conversion workload is routed to the optimal specialized runtime engine.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-        <div class="p-4 bg-bg rounded-lg border border-border">
-          <div class="font-mono text-accent font-bold mb-1">QPDF Processor</div>
-          <div class="text-textPrimary font-semibold text-sm mb-1">Split & Merge Engine</div>
-          <p class="text-textMuted text-[11px]">Lossless page-level binary stream parsing, linearized fast-web PDF output.</p>
-        </div>
-
-        <div class="p-4 bg-bg rounded-lg border border-border">
-          <div class="font-mono text-accentCyan font-bold mb-1">Sharp Engine</div>
-          <div class="text-textPrimary font-semibold text-sm mb-1">JPG to PDF Pipeline</div>
-          <p class="text-textMuted text-[11px]">High-speed libvips native compilation, multi-image resolution preservation.</p>
-        </div>
-
-        <div class="p-4 bg-bg rounded-lg border border-border">
-          <div class="font-mono text-accentEmerald font-bold mb-1">Python Worker</div>
-          <div class="text-textPrimary font-semibold text-sm mb-1">PDF to Word Conversion</div>
-          <p class="text-textMuted text-[11px]">LibreOffice headless service producing editable DOCX formats with style retention.</p>
-        </div>
-
-        <div class="p-4 bg-bg rounded-lg border border-border">
-          <div class="font-mono text-accentIndigo font-bold mb-1">TTL Cleaner</div>
-          <div class="text-textPrimary font-semibold text-sm mb-1">Automated Purge Daemon</div>
-          <p class="text-textMuted text-[11px]">Purges temporary files from S3/MinIO after 24 hours to enforce zero-retention privacy.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TOOLS CATALOG -->
-    <section id="tools" class="flex flex-col gap-6">
-      <div class="flex flex-col gap-1.5">
-        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">04 • Tool Capabilities</span>
-        <h2 class="text-2xl font-bold tracking-tight text-textPrimary">Full Document Suite</h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-        <div class="panel p-5 rounded-lg flex items-start gap-3">
-          <div class="p-2 rounded bg-accent/20 text-accent font-bold font-mono">01</div>
-          <div>
-            <h4 class="font-bold text-textPrimary text-sm mb-1">Compress PDF</h4>
-            <p class="text-textMuted text-[11px]">Dynamic DPI downsampling and font deduplication reducing filesize up to 85%.</p>
-          </div>
-        </div>
-
-        <div class="panel p-5 rounded-lg flex items-start gap-3">
-          <div class="p-2 rounded bg-accentCyan/20 text-accentCyan font-bold font-mono">02</div>
-          <div>
-            <h4 class="font-bold text-textPrimary text-sm mb-1">Merge & Split</h4>
-            <p class="text-textMuted text-[11px]">Precise page range extraction (e.g. 1-5, 8, 12-15) and lossless concatenation.</p>
-          </div>
-        </div>
-
-        <div class="panel p-5 rounded-lg flex items-start gap-3">
-          <div class="p-2 rounded bg-accentEmerald/20 text-accentEmerald font-bold font-mono">03</div>
-          <div>
-            <h4 class="font-bold text-textPrimary text-sm mb-1">PDF to Word (DOCX)</h4>
-            <p class="text-textMuted text-[11px]">Full OCR layout reproduction converting fixed pages into reflowable Microsoft Word files.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- QUICKSTART & RUN LOCALLY -->
-    <section id="quickstart" class="panel p-6 sm:p-8 rounded-2xl flex flex-col gap-5">
+    <!-- PROCESSING ENGINES -->
+    <section id="engines" class="panel rounded-lg p-6 sm:p-8 flex flex-col gap-5">
       <div class="flex flex-col gap-1">
-        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">05 • Getting Started</span>
-        <h3 class="text-xl font-bold text-textPrimary">Run Locally in Under 3 Minutes</h3>
+        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">03 • Specialized Runtimes</span>
+        <h3 class="text-lg font-semibold text-textPrimary">Headless Microservice Engines</h3>
+        <p class="text-xs text-textMuted">Each conversion task is delegated to the optimal runtime environment.</p>
       </div>
 
-      <div class="bg-bg rounded-xl border border-border p-4 font-mono text-xs overflow-x-auto text-textPrimary">
-        <div class="text-textMuted mb-2"># 1. Clone repository and install dependencies</div>
-        <div class="text-accent mb-3"><span class="text-textMuted">$</span> git clone https://github.com/Subhash6102003/pdf-suite-monorepo.git && cd pdf-suite-monorepo && pnpm install</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs font-mono">
+        <div class="p-4 bg-bg rounded border border-border">
+          <div class="text-accent font-semibold mb-1">QPDF Processor</div>
+          <div class="text-textPrimary font-sans font-medium text-xs mb-1">Split & Merge Engine</div>
+          <p class="text-textMuted text-[11px] font-sans">Lossless page-level stream parsing producing linearized, fast-web PDF output.</p>
+        </div>
 
-        <div class="text-textMuted mb-2"># 2. Start PostgreSQL, Redis & MinIO services via Docker</div>
-        <div class="text-accent mb-3"><span class="text-textMuted">$</span> docker compose -f services/workers/docker/docker-compose.dev.yml up -d</div>
+        <div class="p-4 bg-bg rounded border border-border">
+          <div class="text-warmSand font-semibold mb-1">Sharp Engine</div>
+          <div class="text-textPrimary font-sans font-medium text-xs mb-1">JPG to PDF Pipeline</div>
+          <p class="text-textMuted text-[11px] font-sans">High-speed libvips native compilation preserving input image dimensions and DPI.</p>
+        </div>
 
-        <div class="text-textMuted mb-2"># 3. Push database schema & start development cluster</div>
-        <div class="text-accentEmerald"><span class="text-textMuted">$</span> pnpm --filter infra db:push && pnpm dev</div>
+        <div class="p-4 bg-bg rounded border border-border">
+          <div class="text-accent font-semibold mb-1">Python Worker</div>
+          <div class="text-textPrimary font-sans font-medium text-xs mb-1">PDF to Word Conversion</div>
+          <p class="text-textMuted text-[11px] font-sans">Headless LibreOffice service converting documents to reflowable DOCX files.</p>
+        </div>
+
+        <div class="p-4 bg-bg rounded border border-border">
+          <div class="text-warmStone font-semibold mb-1">TTL Cleaner</div>
+          <div class="text-textPrimary font-sans font-medium text-xs mb-1">Automated Purge Daemon</div>
+          <p class="text-textMuted text-[11px] font-sans">Scheduled cron purging expired blobs from S3/MinIO after 24 hours.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCAL QUICKSTART -->
+    <section id="quickstart" class="panel rounded-lg p-6 sm:p-8 flex flex-col gap-5">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">04 • Getting Started</span>
+        <h3 class="text-lg font-semibold text-textPrimary">Run Locally in Under 3 Minutes</h3>
+      </div>
+
+      <div class="bg-bg rounded border border-border p-4 font-mono text-xs text-textPrimary overflow-x-auto space-y-3">
+        <div>
+          <span class="text-textDim"># 1. Clone repository and install dependencies</span>
+          <div class="text-accent mt-0.5"><span class="text-textDim">$</span> git clone https://github.com/Subhash6102003/pdf-suite-monorepo.git && cd pdf-suite-monorepo && pnpm install</div>
+        </div>
+        <div>
+          <span class="text-textDim"># 2. Start PostgreSQL, Redis & MinIO services via Docker Compose</span>
+          <div class="text-accent mt-0.5"><span class="text-textDim">$</span> docker compose -f services/workers/docker/docker-compose.dev.yml up -d</div>
+        </div>
+        <div>
+          <span class="text-textDim"># 3. Push database schema and start development cluster</span>
+          <div class="text-warmSand mt-0.5"><span class="text-textDim">$</span> pnpm --filter infra db:push && pnpm dev</div>
+        </div>
       </div>
     </section>
 
     <!-- AUTHOR CARD -->
-    <section class="panel rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-border">
+    <section class="panel rounded-lg p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
       <div class="flex flex-col gap-1.5">
-        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">Engineered By Owner</span>
-        <h3 class="text-xl font-bold text-textPrimary">Subhash Maurya</h3>
+        <span class="text-xs font-mono uppercase text-accent tracking-wider font-semibold">Built by Owner</span>
+        <h3 class="text-lg font-semibold text-textPrimary">Subhash Maurya</h3>
         <p class="text-xs text-textMuted max-w-xl leading-relaxed">
-          Systems developer, Android architect, and full-stack software engineer specialized in building resilient, distributed cloud applications.
+          Systems developer, Android architect, and full-stack software engineer specialized in building resilient, distributed cloud software.
         </p>
       </div>
 
       <div class="flex items-center gap-3 shrink-0">
-        <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-5 py-2.5 bg-accent hover:opacity-90 text-white text-xs font-semibold rounded-lg transition-opacity flex items-center gap-2">
+        <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="px-4 py-2 bg-accent hover:bg-accentHover text-textPrimary text-xs font-medium rounded transition-colors flex items-center gap-1.5">
           <span>GitHub Repo</span>
           <span>↗</span>
         </a>
-        <a href="https://www.linkedin.com/in/subhash-maurya-656905243/" target="_blank" rel="noreferrer" class="px-5 py-2.5 panel hover:bg-surfaceHover text-textPrimary text-xs font-semibold rounded-lg transition-colors flex items-center gap-2">
+        <a href="https://www.linkedin.com/in/subhash-maurya-656905243/" target="_blank" rel="noreferrer" class="px-4 py-2 panel panel-hover text-textPrimary text-xs font-medium rounded transition-colors flex items-center gap-1.5">
           <span>LinkedIn</span>
           <span>↗</span>
         </a>
@@ -435,16 +357,15 @@
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-border py-8 px-6 sm:px-12 text-xs text-textMuted flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto w-full">
-    <div class="flex items-center gap-2">
-      <span class="w-2 h-2 rounded-full bg-accent"></span>
-      <span>PDF Suite Monorepo • MIT Licensed Open Source Project</span>
+  <!-- MINIMAL FOOTER -->
+  <footer class="border-t border-border py-6 px-6 sm:px-12 text-xs text-textMuted flex flex-col sm:flex-row items-center justify-between gap-3 max-w-5xl mx-auto w-full">
+    <div>
+      PDF Suite Monorepo • Built by Subhash Maurya. MIT License.
     </div>
-    <div class="flex items-center gap-6 font-mono text-[11px]">
+    <div class="flex items-center gap-5 font-mono text-[11px]">
       <a href="#overview" class="hover:text-textPrimary transition-colors">Overview</a>
       <a href="#architecture" class="hover:text-textPrimary transition-colors">Architecture</a>
-      <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="text-accent hover:underline">GitHub</a>
+      <a href="https://github.com/Subhash6102003/pdf-suite-monorepo" target="_blank" rel="noreferrer" class="hover:text-accent transition-colors">GitHub</a>
       <a href="https://www.linkedin.com/in/subhash-maurya-656905243/" target="_blank" rel="noreferrer" class="hover:text-textPrimary transition-colors">LinkedIn</a>
     </div>
   </footer>
