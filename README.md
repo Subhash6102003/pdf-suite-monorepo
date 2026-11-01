@@ -1,4 +1,4 @@
-# PDF Suite: Enterprise Distributed Document SaaS Monorepo
+# 📄 PDF Suite: Enterprise Distributed Document SaaS Monorepo
 
 > **PDF Suite** is an enterprise-grade, distributed document processing SaaS platform built as a high-performance monorepo. It features client-side WASM processing, high-throughput asynchronous job workers, cross-platform mobile support (iOS/Android), and complete database schema orchestration.
 
@@ -9,34 +9,37 @@
 [![BullMQ](https://img.shields.io/badge/BullMQ-Redis%20Queues-CC0000?logo=redis)]()
 [![Prisma](https://img.shields.io/badge/Prisma-PostgreSQL-2D3748?logo=prisma)]()
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)]()
+[![License](https://img.shields.io/badge/license-MIT-blue)]()
 
 ---
 
-## 🏛️ System Architecture
+## 🏛️ System Architecture Diagrams
+
+### 1. High-Level Distributed Topology
 
 ```mermaid
 flowchart TD
-    subgraph Clients [Client Layer]
+    subgraph Clients ["📱 Client Layer"]
         Web["Next.js 15 Web Application\n(App Router, Tailwind CSS, Client WASM)"]
         Mobile["Flutter Mobile App\n(iOS & Android, Riverpod, GoRouter, Fastlane)"]
     end
 
-    subgraph Gateway [API Layer]
+    subgraph Gateway ["🚪 Ingress & API Gateway"]
         API["Fastify High-Throughput REST Gateway\n(OpenAPI 3.0, Rate Limiting, Bearer Auth, Zod Validation)"]
     end
 
-    subgraph Queue [Distributed Job Bus]
+    subgraph Queue ["📨 Distributed Job Bus"]
         Redis[("Redis Cluster / BullMQ Message Broker")]
     end
 
-    subgraph Workers [Asynchronous Processing Engines]
+    subgraph Workers ["⚙️ Asynchronous Processing Engines"]
         QPDFWorker["QPDF Engine\n(Lossless Split & Merge)"]
         SharpWorker["Sharp Engine\n(Lossless JPG to PDF Pipeline)"]
         PyWorker["Python / LibreOffice Worker\n(High-Fidelity PDF to Word Conversion)"]
         CleanWorker["Cleanup Cron Worker\n(TTL Retention & Orphan Purging)"]
     end
 
-    subgraph Infrastructure [Data & Persistence]
+    subgraph Infrastructure ["💾 Data & Persistence Tier"]
         DB[("PostgreSQL 16\n(Prisma ORM, Entitlements, Job State)")]
         Storage[("MinIO / AWS S3 Object Storage\n(Encrypted Blobs & Signed URLs)")]
     end
@@ -48,6 +51,74 @@ flowchart TD
     Redis -->|Process Job Queues| Workers
     Workers -->|Store Output Artifacts| Storage
     Workers -->|Update Job State| DB
+```
+
+---
+
+### 2. End-to-End Asynchronous Job Lifecycle
+
+This sequence diagram details how heavy conversions are orchestrated asynchronously across the Fastify gateway, BullMQ queue, distributed worker pool, and S3 object storage:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Client as Web / Mobile Client
+    participant API as Fastify REST API
+    participant DB as PostgreSQL (Prisma)
+    participant Redis as BullMQ & Redis
+    participant Worker as Processing Worker Pool
+    participant S3 as S3 / MinIO Storage
+
+    Client->>API: POST /api/v1/jobs (Upload file + conversion parameters)
+    API->>DB: INSERT Job (status: QUEUED, metadata)
+    API->>S3: Upload raw input blob
+    API->>Redis: Enqueue conversion job to BullMQ
+    API-->>Client: 202 Accepted { jobId: "uuid", status: "queued" }
+
+    Note over Client,API: Client polls status or listens via SSE
+
+    Redis->>Worker: Dispatch job payload to available worker node
+    Worker->>DB: UPDATE Job (status: PROCESSING)
+    Worker->>S3: Fetch source file buffer
+    Worker->>Worker: Execute conversion (QPDF / Sharp / LibreOffice)
+    Worker->>S3: Put processed output artifact
+    Worker->>DB: UPDATE Job (status: COMPLETED, downloadToken, TTL: 24h)
+
+    Client->>API: GET /api/v1/jobs/{jobId}
+    API->>DB: Query job state
+    DB-->>API: Status: COMPLETED, downloadToken: "jwt_token"
+    API-->>Client: 200 OK { status: "completed", downloadToken }
+
+    Client->>API: GET /api/v1/download/{downloadToken}
+    API->>S3: Fetch processed file
+    API-->>Client: Stream binary output file
+```
+
+---
+
+### 3. Document Lifecycle State Machine
+
+```mermaid
+stateDiagram-v2
+    [*] --> Idle: User drops document
+
+    state InBrowserDecision <<choice>>
+    Idle --> InBrowserDecision: Size & Format check
+
+    InBrowserDecision --> InBrowserWASM: Size < 15MB & PDF tools
+    InBrowserDecision --> ServerUpload: Size >= 15MB or PDF-to-Word
+
+    InBrowserWASM --> DownloadReady: Instant client-side render
+    
+    ServerUpload --> Queued: File accepted by Fastify API
+    Queued --> Processing: Picked up by BullMQ worker
+    Processing --> Completed: Conversion & verification pass
+    Processing --> Failed: Retry budget exhausted (Dead-Letter Queue)
+
+    Completed --> DownloadReady: Signed one-time download token generated
+    DownloadReady --> Purged: 24-Hour TTL cleanup cron executes
+    Failed --> Purged: Error retention period expires
+    Purged --> [*]
 ```
 
 ---
