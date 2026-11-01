@@ -1,0 +1,24 @@
+name: CI Mobile
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.19.0'
+        channel: 'stable'
+    - run: flutter pub get
+      working-directory: apps/mobile
+    - run: flutter analyze
+      working-directory: apps/mobile
+    - run: flutter test
+      working-directory: apps/mobile
+    - run: flutter build apk --debug
+      working-directory: apps/mobile

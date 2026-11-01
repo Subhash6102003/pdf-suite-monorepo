@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.turbo/
+.env
+coverage/
+.next/
+
+# Flutter / Mobile
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+*.apk
+*.aab
+
+# OS & Environment
+.DS_Store
+Thumbs.db
+*.log
+*.env.local

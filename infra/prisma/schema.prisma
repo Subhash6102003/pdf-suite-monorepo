@@ -1,0 +1,158 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model users {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  organization_members organization_members[]
+  tool_usage           tool_usage[]
+  api_keys             api_keys[]
+  audit_logs           audit_logs[]
+}
+
+model organizations {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members       organization_members[]
+  subscriptions subscriptions[]
+  usage         usage[]
+  api_keys      api_keys[]
+  audit_logs    audit_logs[]
+}
+
+model organization_members {
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String   @db.Uuid
+  organizationId String   @db.Uuid
+  role           String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user         users         @relation(fields: [userId], references: [id])
+  organization organizations @relation(fields: [organizationId], references: [id])
+
+  @@unique([userId, organizationId])
+}
+
+model plans {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  features  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subscriptions subscriptions[]
+}
+
+model subscriptions {
+  id             String   @id @default(uuid()) @db.Uuid
+  organizationId String   @db.Uuid
+  planId         String   @db.Uuid
+  status         String
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization organizations @relation(fields: [organizationId], references: [id])
+  plan         plans         @relation(fields: [planId], references: [id])
+}
+
+model devices {
+  id        String   @id @default(uuid()) @db.Uuid
+  deviceId  String   @unique
+  os        String
+  version   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ProcessingJobStatus {
+  QUEUED
+  QUEUED_OFFLINE
+  PROCESSING
+  VALIDATING
+  COMPLETED
+  FAILED
+  EXPIRED
+}
+
+model processing_jobs {
+  id        String              @id @default(uuid()) @db.Uuid
+  type      String
+  status    ProcessingJobStatus @default(QUEUED)
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  results processing_results[]
+}
+
+model processing_results {
+  id             String   @id @default(uuid()) @db.Uuid
+  jobId          String   @db.Uuid
+  fileSizeBytes  BigInt
+  outputFilePath String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  job processing_jobs @relation(fields: [jobId], references: [id])
+}
+
+model tool_usage {
+  id            String   @id @default(uuid()) @db.Uuid
+  userId        String   @db.Uuid
+  toolName      String
+  bytesProcessed BigInt
+  createdAt     DateTime @default(now())
+
+  user users @relation(fields: [userId], references: [id])
+}
+
+model usage {
+  id             String   @id @default(uuid()) @db.Uuid
+  organizationId String   @db.Uuid
+  month          DateTime
+  bytesProcessed BigInt
+  jobCount       Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization organizations @relation(fields: [organizationId], references: [id])
+}
+
+model api_keys {
+  id             String   @id @default(uuid()) @db.Uuid
+  keyHash        String   @unique
+  userId         String?  @db.Uuid
+  organizationId String?  @db.Uuid
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user         users?         @relation(fields: [userId], references: [id])
+  organization organizations? @relation(fields: [organizationId], references: [id])
+}
+
+model audit_logs {
+  id             String   @id @default(uuid()) @db.Uuid
+  userId         String?  @db.Uuid
+  organizationId String?  @db.Uuid
+  action         String
+  metadata       Json?
+  createdAt      DateTime @default(now())
+
+  user         users?         @relation(fields: [userId], references: [id])
+  organization organizations? @relation(fields: [organizationId], references: [id])
+}

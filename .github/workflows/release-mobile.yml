@@ -1,0 +1,39 @@
+name: Release Mobile
+on:
+  release:
+    types: [published]
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2
+    - run: flutter pub get
+      working-directory: apps/mobile
+    - name: Run Fastlane Match and Deploy
+      run: bundle exec fastlane ios beta
+      working-directory: apps/mobile/ios
+      env:
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+        APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+        APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
+
+  android:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2
+    - run: flutter pub get
+      working-directory: apps/mobile
+    - run: flutter build appbundle --release
+      working-directory: apps/mobile
+    - name: Upload to Play Console
+      uses: r0adkll/upload-google-play@v1
+      with:
+        serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+        packageName: com.pdfsuite.app
+        releaseFiles: apps/mobile/build/app/outputs/bundle/release/app-release.aab
+        track: internal

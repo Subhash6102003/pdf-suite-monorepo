@@ -1,0 +1,28 @@
+﻿default_platform(:ios)
+
+platform :ios do
+  lane :test do
+    sh("flutter test")
+  end
+
+  lane :build_ios do
+    match(type: "appstore")
+    sh("flutter build ipa --release")
+  end
+
+  lane :release_ios do
+    build_ios
+    upload_to_testflight
+  end
+end
+
+platform :android do
+  lane :build_android do
+    sh("flutter build appbundle --release")
+  end
+
+  lane :release_android do
+    build_android
+    upload_to_play_store(track: "internal")
+  end
+end
